@@ -29,7 +29,7 @@ for i in range(28):  # 假设打印一个月的日历
          (current_date > safe_period_end + timedelta(days=cycle_length - period_length - 1)):
         status = "安全期"
     else:
-        status = "不明"
+        status = "安全期"
     
     print(current_date.strftime("%Y-%m-%d"), "\t", status)
 
