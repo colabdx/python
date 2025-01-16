@@ -9,7 +9,7 @@ islands = [
     '鳕鱼角岛 A, Es',
     '圣巴巴拉岛 E, As',
     '迪克森岛 B, Des',
-    '纳尔维克岛 Fis, Fes',
+    '纳尔维克岛 Fis, Ges',
     '诺姆岛 Cis, Ces',
     '珀斯岛  Gis, Fes',
     '瓦尔帕莱索岛 Dis, Hesses',
