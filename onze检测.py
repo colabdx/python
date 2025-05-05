@@ -87,8 +87,6 @@ def main():
                 running = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 # 检查是否点击了按钮
-                mouse_pos = pygame.mouse.get_pos()
-                if 100 <= mouse_pos[0] <= 300 and 100 <= mouse_pos[1] <= 180:
                     if button_active:
                         print("漂发按钮被按下! 你可以成为金发!")
                         # 这里可以添加更多的效果或功能
