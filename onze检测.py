@@ -31,8 +31,8 @@ def listen_for_onze():
         text = recognizer.recognize_google(audio, language='fr-FR')  # 法语识别
         print("识别结果:", text)
         
-        if "onze" in text.lower():
-            score += 100
+        if "11" in text.lower():
+            score += 500
             print(f"检测到'onze'! 当前积分: {score}/{target_score}")
             
             if score >= target_score and not button_active:
