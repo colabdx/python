@@ -32,7 +32,7 @@ def listen_for_onze():
         print("识别结果:", text)
         
         if "onze" in text.lower():
-            score += 10
+            score += 100
             print(f"检测到'onze'! 当前积分: {score}/{target_score}")
             
             if score >= target_score and not button_active:
