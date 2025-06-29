@@ -198,7 +198,7 @@ while running:
                     if event.key == pygame.K_r:
                         # 重置游戏
                         player_life = 100
-                        player_gold = 1000
+                        player_gold = 10000
                         player_score = 0
                         selected_concentration = None
                         bubbles = []
