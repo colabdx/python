@@ -1,5 +1,14 @@
 import tkinter as tk
 import random
+import pygame
+from pygame import joystick
+
+# 初始化pygame和手柄
+pygame.init()
+joystick.init()
+if joystick.get_count() > 0:
+    controller = joystick.Joystick(0)
+    controller.init()
 
 # 定义项目列表
 items = [
@@ -14,13 +23,13 @@ items = [
     "王水 氙", "油 铯", "硫酸油 钡", "硫酸 镧系", "火 镧", "水 铈",
     "星座标记与工艺 镨", "白羊座 煅烧 钕", "金牛座 凝固 钷", "双子座 固着 钐",
     "巨蟹座 解决方案 铕", "狮子座 消化 钆", "处女座 蒸馏 铽", "天秤座 升华 镝",
-    "天蝎座 分离 钬", "人马座 蜡化 铒", "魔羯座 发酵 铥", "水瓶座 乘法 镱",
+    "天蝎座 分离 钬", "射手座 蜡化 铒", "魔羯座 发酵 铥", "水瓶座 乘法 镱",
     "双鱼座 投影 镥", "蛋壳 铪", "小体 钽", "灯芯 钨", "牛脂 铼", "肥皂 锇",
     "肥皂 铱", "铂", "金色的 金", "水星 汞", "精神融合 铊", "草地 铅",
     "铋", "雄黄 钋", "阿卡维纳 砹", "水浴 氡", "反驳 钫", "坩埚 镭",
-    "空气 锕", "地球 钍", "其他工艺 镤", "组成 铀", "腐烂 镎", "煮 钚",
-    "解决 镅", "合并 锔", "拿 锫", "净化 锎", "蒸馏 锿", "筛选 镄",
-    "沉淀物 钔", "升华 锘", "粉碎 铹", "品脱 𬬻", "顾虑 罕", "微量",
+    "空气 锕", "地球 钍", "其他工艺 镤", "白羊宫 组成 铀", "金牛宫 腐烂 镎", "双子宫 煮 钚",
+    "巨蟹宫 解决 镅", "狮子宫 合并 锔", "处女宫 拿 锫", "天秤宫 净化 锎", "天蝎宫 蒸馏 锿", "射手宫 筛选 镄",
+    "摩羯宫 沉淀物 钔", "水瓶宫 升华 锘", "双鱼宫 粉碎 铹", "品脱 𬬻", "顾虑 罕", "微量",
     "盎司", "英镑", "小时"
 ]
 
@@ -29,10 +38,9 @@ root = tk.Tk()
 root.title("Random Item Selector")
 
 # 创建一个标签用于显示所选项目
-selected_item_label = tk.Label(root, text="", font=("Helvetica", 16))
+selected_item_label = tk.Label(root, text="", font=("微软雅黑", 16))
 selected_item_label.pack(pady=20)
 
-# 定义按钮点击事件的处理函数
 def select_item():
     selected_item = random.choice(items)
     selected_item_label.config(text=selected_item)
@@ -40,6 +48,17 @@ def select_item():
 # 创建一个按钮用于触发选择事件
 select_button = tk.Button(root, text="Select an Item", command=select_item)
 select_button.pack(pady=10)
+
+def check_controller():
+    for event in pygame.event.get():
+        if event.type == pygame.JOYBUTTONDOWN:
+            # A按钮(0)或B按钮(1)按下时触发选择
+            if event.button in [0, 1]:
+                select_item()
+    root.after(50, check_controller)  # 每50ms检查一次手柄输入
+
+# 启动手柄检测
+root.after(50, check_controller)
 
 # 运行主循环
 root.mainloop()
